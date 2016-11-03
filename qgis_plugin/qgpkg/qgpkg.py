@@ -204,6 +204,7 @@ class QGpkg:
         except sqlite3.OperationalError:
             self.c.execute('CREATE TABLE qgis_projects (name text, xml text)')
             self.c.execute('INSERT INTO qgis_projects VALUES (?,?)', inserts)
+            self.c.execute('CREATE TABLE gpkg_extensions (table_name text, column_name text, extension_name text, definition text, scope text)')
             self.c.execute(
                 'INSERT INTO gpkg_extensions VALUES (?,?,?,?,?)', extensions)
             self.log(logging.DEBUG, u"Project %s was saved." % inserts[0])
